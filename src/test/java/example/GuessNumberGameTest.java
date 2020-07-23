@@ -134,4 +134,15 @@ public class GuessNumberGameTest {
         //then
         assertEquals("Wrong Input，Input again",actual);
     }
+
+    @Test
+    void should_generate_size_4_answer_when_play_generate_answer() {
+
+        //when
+        AnswerProvider answerProvider = new AnswerProvider();
+        List<Integer> answer = answerProvider.generateAnswer();
+
+        //then
+        assertEquals(4,answer.size());
+    }
 }
