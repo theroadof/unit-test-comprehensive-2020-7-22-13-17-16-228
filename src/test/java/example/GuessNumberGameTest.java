@@ -89,4 +89,19 @@ public class GuessNumberGameTest {
         //then
         assertEquals("0A2B",actual);
     }
+
+    @Test
+    void should_return_0A0B_when_play_guess_number_given_1234_and_5678() {
+        //given
+        List<Integer> answer = Stream.of(5,6,7,8).collect(Collectors.toList());
+        AnswerProvider answerProvider = mock(AnswerProvider.class);
+        when(answerProvider.generateAnswer()).thenReturn(Arrays.asList(1,2,3,4));
+        GuessNumberGame guessNumberGame = new GuessNumberGame(answerProvider);
+
+        //when
+        String actual = guessNumberGame.guessNumber(answer);
+
+        //then
+        assertEquals("0A0B",actual);
+    }
 }
