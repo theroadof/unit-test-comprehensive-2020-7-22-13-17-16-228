@@ -1,9 +1,6 @@
 package example;
 
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.stream.Stream;
 
 public class GuessNumberGame {
@@ -24,7 +21,7 @@ public class GuessNumberGame {
         return answer;
     }
 
-    private static String compare(List<Integer> answer,List<Integer> playerAnswer){
+    public String compare(List<Integer> answer,List<Integer> playerAnswer){
         int A=0,B=0;
         Map<Integer,Integer> playerAnswerMap = new HashMap<>();
         for(int i=0;i<answer.size();i++){
@@ -41,4 +38,16 @@ public class GuessNumberGame {
         }
         return String.format("%dA%dB",A,B);
     }
+
+//    public boolean isValid(List<Integer> playerAnswer){
+//        boolean result = true;
+//        if(playerAnswer.isEmpty()){
+//            result=false;
+//        }
+//        Set playerAnswerSet = new HashSet(playerAnswer);
+//        if(playerAnswerSet.size()<playerAnswer.size()){
+//            result = false;
+//        }
+//        return result;
+//    }
 }
