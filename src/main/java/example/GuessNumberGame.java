@@ -14,7 +14,7 @@ public class GuessNumberGame {
     }
 
     public String guessNumber(List<Integer> playerAnswer) {
-        return compare(this.answer,playerAnswer);
+        return (isValid(playerAnswer))?compare(this.answer,playerAnswer):"Wrong Input，Input again";
     }
 
     public List<Integer> getAnswer() {
@@ -39,15 +39,15 @@ public class GuessNumberGame {
         return String.format("%dA%dB",A,B);
     }
 
-//    public boolean isValid(List<Integer> playerAnswer){
-//        boolean result = true;
-//        if(playerAnswer.isEmpty()){
-//            result=false;
-//        }
-//        Set playerAnswerSet = new HashSet(playerAnswer);
-//        if(playerAnswerSet.size()<playerAnswer.size()){
-//            result = false;
-//        }
-//        return result;
-//    }
+    public boolean isValid(List<Integer> playerAnswer){
+        boolean result = true;
+        if(playerAnswer.isEmpty()){
+            result=false;
+        }
+        Set playerAnswerSet = new HashSet(playerAnswer);
+        if(playerAnswerSet.size()<playerAnswer.size()){
+            result = false;
+        }
+        return result;
+    }
 }
