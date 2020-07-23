@@ -45,7 +45,7 @@ public class GuessNumberGame {
             result=false;
         }
         Set playerAnswerSet = new HashSet(playerAnswer);
-        if(playerAnswerSet.size()<playerAnswer.size()){
+        if(playerAnswerSet.size()<playerAnswer.size() || playerAnswer.size()<this.answer.size()){
             result = false;
         }
         return result;

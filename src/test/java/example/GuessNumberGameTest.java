@@ -119,4 +119,19 @@ public class GuessNumberGameTest {
         //then
         assertEquals("Wrong Input，Input again",actual);
     }
+
+    @Test
+    void should_return_wrong_input_input_again_when_play_guess_number_given_1234_and_12() {
+        //given
+        List<Integer> answer = Stream.of(1,2).collect(Collectors.toList());
+        AnswerProvider answerProvider = mock(AnswerProvider.class);
+        when(answerProvider.generateAnswer()).thenReturn(Arrays.asList(1,2,3,4));
+        GuessNumberGame guessNumberGame = new GuessNumberGame(answerProvider);
+
+        //when
+        String actual = guessNumberGame.guessNumber(answer);
+
+        //then
+        assertEquals("Wrong Input，Input again",actual);
+    }
 }
