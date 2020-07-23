@@ -10,10 +10,8 @@ public class AnswerProvider implements AnswerGenerator {
         int size=0;
         while (size<4){
             int number = (int)(Math.random()*10);
-            if(!answer.contains(number)){
-                answer.add(number);
-                size++;
-            }
+            answer.add(number);
+            size++;
         }
         return answer;
     }
