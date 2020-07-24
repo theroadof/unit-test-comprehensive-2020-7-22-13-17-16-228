@@ -21,14 +21,19 @@ public class GuessNumberGame {
 //        playGame(guessNumberGame);
 //    }
 
+    public List<Integer> receiveInput(Scanner scanner){
+        List<Integer> playerInput = new ArrayList<>();
+        String[] input = scanner.nextLine().trim().split(" ");
+        for (int j = 0; j < input.length; j++) {
+            playerInput.add(Integer.parseInt(input[j]));
+        }
+        return playerInput;
+    }
+
     public void playGame() {
         Scanner player = new Scanner(System.in);
-        List<Integer> playerInput = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
-            String[] input = player.nextLine().trim().split(" ");
-            for (int j = 0; j < input.length; j++) {
-                playerInput.add(Integer.parseInt(input[j]));
-            }
+            List<Integer> playerInput = receiveInput(player);
             String answer = this.guessNumber(playerInput);
             if (answer.equals("4A0B")) {
                 System.out.println(answer);
