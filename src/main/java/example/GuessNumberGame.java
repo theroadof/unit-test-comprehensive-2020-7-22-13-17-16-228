@@ -1,6 +1,7 @@
 package example;
 
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GuessNumberGame {
     private List<Integer> answer;
@@ -16,39 +17,19 @@ public class GuessNumberGame {
     }
 
     public static void main(String[] args) {
-//        Scanner player = new Scanner(System.in);
-//        List<Integer> playerInput = new ArrayList<>();
-//        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
-//        for(int i=0;i<6;i++){
-//            for (int j = 0; j < 4; j++) {
-//                playerInput.add(player.nextInt());
-//            }
-//            String answer = guessNumberGame.guessNumber(playerInput);
-//            if (answer.equals("4A0B")) {
-//                System.out.println(answer);
-//                System.out.println("you win");
-//                break;
-//            }
-//            System.out.println(answer);
-//            playerInput.clear();
-//            System.out.println("game times:"+guessNumberGame.getTimes());
-//        }
-//        if(guessNumberGame.getTimes()==6){
-//            System.out.println("answer is:"+guessNumberGame.getAnswer());
-//            System.out.println("game over!you lose!");
-//        }
         GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
         playGame(guessNumberGame);
     }
 
-    public static void playGame(GuessNumberGame guessNumberGame){
+    public static void playGame(GuessNumberGame guessNumberGame) {
         Scanner player = new Scanner(System.in);
         List<Integer> playerInput = new ArrayList<>();
-//        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
-        for(int i=0;i<6;i++){
-            for (int j = 0; j < 4; j++) {
-                playerInput.add(player.nextInt());
+        for (int i = 0; i < 6; i++) {
+            String[] input = player.nextLine().trim().split(" ");
+            for (int j = 0; j < input.length; j++) {
+                playerInput.add(Integer.parseInt(input[j]));
             }
+            System.out.println("answer:" + guessNumberGame.getAnswer());
             String answer = guessNumberGame.guessNumber(playerInput);
             if (answer.equals("4A0B")) {
                 System.out.println(answer);
@@ -57,10 +38,10 @@ public class GuessNumberGame {
             }
             System.out.println(answer);
             playerInput.clear();
-            System.out.println("game times:"+guessNumberGame.getTimes());
+            System.out.println("game times:" + guessNumberGame.getTimes());
         }
-        if(guessNumberGame.getTimes()==6){
-            System.out.println("answer is:"+guessNumberGame.getAnswer());
+        if (guessNumberGame.getTimes() == 6) {
+            System.out.println("answer is:" + guessNumberGame.getAnswer());
             System.out.println("game over!you lose!");
         }
     }
@@ -76,7 +57,7 @@ public class GuessNumberGame {
     }
 
     public String compare(List<Integer> answer, List<Integer> playerAnswer) {
-        int A = 0, B = 0;
+        int rightNumberInRightPosition = 0, rightNumber = 0;
         Map<Integer, Integer> playerAnswerMap = new HashMap<>();
         for (int i = 0; i < answer.size(); i++) {
             playerAnswerMap.put(playerAnswer.get(i), i);
@@ -84,13 +65,13 @@ public class GuessNumberGame {
         for (int i = 0; i < answer.size(); i++) {
             if (playerAnswerMap.containsKey(answer.get(i))) {
                 if (playerAnswerMap.get(answer.get(i)) == i) {
-                    A++;
+                    rightNumberInRightPosition++;
                 } else {
-                    B++;
+                    rightNumber++;
                 }
             }
         }
-        return String.format("%dA%dB", A, B);
+        return String.format("%dA%dB", rightNumberInRightPosition, rightNumber);
     }
 
     public boolean isValid(List<Integer> playerAnswer) {
@@ -101,6 +82,11 @@ public class GuessNumberGame {
         Set playerAnswerSet = new HashSet(playerAnswer);
         if (playerAnswerSet.size() < playerAnswer.size() || playerAnswer.size() < this.answer.size()) {
             result = false;
+        }
+        for(int number : playerAnswer){
+            if(number>9 || number <0){
+                result = false;
+            }
         }
         return result;
     }
