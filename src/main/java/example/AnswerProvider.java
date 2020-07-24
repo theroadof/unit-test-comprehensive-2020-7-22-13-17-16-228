@@ -12,7 +12,7 @@ public class AnswerProvider implements AnswerGenerator {
             int number = (int)(Math.random()*10);
             if(!answer.contains(number)){
                 answer.add(number);
-                size++;
+                ++size;
             }
         }
         return answer;
