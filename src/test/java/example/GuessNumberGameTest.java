@@ -154,7 +154,7 @@ public class GuessNumberGameTest {
         Set<Integer> answerSet = new HashSet<>(answer);
 
         //then
-        assertEquals(true, answer.size()==answerSet.size());
+        assertEquals(true, answer.size() == answerSet.size());
     }
 
     @Test
@@ -165,13 +165,26 @@ public class GuessNumberGameTest {
         boolean actual = false;
 
         //when
-        for(Integer number:answer){
-            if(number instanceof Integer){
+        for (Integer number : answer) {
+            if (number instanceof Integer) {
                 actual = true;
             }
         }
 
         //then
-        assertEquals(true,actual);
+        assertEquals(true, actual);
+    }
+
+    @Test
+    void should_play_times_in_6_when_play_game() {
+        //given
+        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
+        guessNumberGame.main(null);
+
+        //when
+        boolean actual = guessNumberGame.getTimes() < 6;
+
+        //then
+        assertEquals(true, actual);
     }
 }
