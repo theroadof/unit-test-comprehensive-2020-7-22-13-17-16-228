@@ -21,7 +21,7 @@ public class GuessNumberGame {
 //        playGame(guessNumberGame);
 //    }
 
-    public List<Integer> receiveInput(Scanner scanner){
+    public List<Integer> receiveInput(Scanner scanner) {
         List<Integer> playerInput = new ArrayList<>();
         String[] input = scanner.nextLine().trim().split(" ");
         for (int j = 0; j < input.length; j++) {
@@ -36,18 +36,21 @@ public class GuessNumberGame {
             List<Integer> playerInput = receiveInput(player);
             String answer = this.guessNumber(playerInput);
             if (answer.equals("4A0B")) {
-                System.out.println(answer);
-                System.out.println("you win");
+                System.out.println(answer + ",you win!");
                 break;
             }
-            System.out.println(answer);
-            playerInput.clear();
-            System.out.println("game times:" + this.getTimes());
+            System.out.println(output(answer));
         }
-        if (this.getTimes() == 6) {
-            System.out.println("answer is:" + this.getAnswer());
-            System.out.println("game over!you lose!");
+    }
+
+    public String output(String answer) {
+        StringBuilder result = new StringBuilder();
+        if (this.getTimes() >= 6) {
+            result.append("answer is : " + this.getAnswer() + "\ngame over!you lose!");
+        } else {
+            result.append(answer + "\ngame times : " + this.getTimes());
         }
+        return result.toString();
     }
 
     public String guessNumber(List<Integer> playerAnswer) {
@@ -86,8 +89,8 @@ public class GuessNumberGame {
         if (playerAnswerSet.size() < playerAnswer.size() || playerAnswer.size() < this.answer.size()) {
             result = false;
         }
-        for(int number : playerAnswer){
-            if(number>9 || number <0){
+        for (int number : playerAnswer) {
+            if (number > 9 || number < 0) {
                 result = false;
             }
         }
