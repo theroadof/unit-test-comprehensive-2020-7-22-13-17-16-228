@@ -156,4 +156,22 @@ public class GuessNumberGameTest {
         //then
         assertEquals(true, answer.size()==answerSet.size());
     }
+
+    @Test
+    void should_generate_number_of_answer_when_play_generate_answer() {
+        //given
+        AnswerProvider answerProvider = new AnswerProvider();
+        List<Integer> answer = answerProvider.generateAnswer();
+        boolean actual = false;
+
+        //when
+        for(Integer number:answer){
+            if(number instanceof Integer){
+                actual = true;
+            }
+        }
+
+        //then
+        assertEquals(true,actual);
+    }
 }
