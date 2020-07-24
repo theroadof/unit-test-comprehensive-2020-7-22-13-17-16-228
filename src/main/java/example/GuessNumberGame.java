@@ -16,12 +16,12 @@ public class GuessNumberGame {
         times = 0;
     }
 
-    public static void main(String[] args) {
-        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
-        playGame(guessNumberGame);
-    }
+//    public static void main(String[] args) {
+//        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
+//        playGame(guessNumberGame);
+//    }
 
-    public static void playGame(GuessNumberGame guessNumberGame) {
+    public void playGame() {
         Scanner player = new Scanner(System.in);
         List<Integer> playerInput = new ArrayList<>();
         for (int i = 0; i < 6; i++) {
@@ -29,8 +29,7 @@ public class GuessNumberGame {
             for (int j = 0; j < input.length; j++) {
                 playerInput.add(Integer.parseInt(input[j]));
             }
-            System.out.println("answer:" + guessNumberGame.getAnswer());
-            String answer = guessNumberGame.guessNumber(playerInput);
+            String answer = this.guessNumber(playerInput);
             if (answer.equals("4A0B")) {
                 System.out.println(answer);
                 System.out.println("you win");
@@ -38,14 +37,13 @@ public class GuessNumberGame {
             }
             System.out.println(answer);
             playerInput.clear();
-            System.out.println("game times:" + guessNumberGame.getTimes());
+            System.out.println("game times:" + this.getTimes());
         }
-        if (guessNumberGame.getTimes() == 6) {
-            System.out.println("answer is:" + guessNumberGame.getAnswer());
+        if (this.getTimes() == 6) {
+            System.out.println("answer is:" + this.getAnswer());
             System.out.println("game over!you lose!");
         }
     }
-
 
     public String guessNumber(List<Integer> playerAnswer) {
         times++;
