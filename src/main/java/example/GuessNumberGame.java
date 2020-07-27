@@ -63,9 +63,9 @@ public class GuessNumberGame {
     private String compare(List<Integer> answer, List<Integer> playerAnswer) {
         int rightNumberInRightPosition = 0, rightNumber = 0;
         Map<Integer, Integer> playerAnswerMap = new HashMap<>();
-        for (int i = 0; i < answer.size(); i++) {
-            playerAnswerMap.put(playerAnswer.get(i), i);
-        }
+        playerAnswer.forEach(playerInput -> {
+            playerAnswerMap.put(playerInput,playerAnswer.indexOf(playerInput));
+        });
         for (int i = 0; i < answer.size(); i++) {
             if (playerAnswerMap.containsKey(answer.get(i))) {
                 if (playerAnswerMap.get(answer.get(i)) == i) {
