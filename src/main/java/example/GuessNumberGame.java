@@ -12,6 +12,7 @@ public class GuessNumberGame {
     private static final String GAME_TIMES = "\ngame times : ";
     private static final String ANSWER_IS = "answer is : ";
     private static final String WRONG_INPUT = "Wrong Input，Input again";
+    private static final int MAX_GAME_TIME = 6;
     private final List<Integer> answer;
 
     private int times;
@@ -41,7 +42,7 @@ public class GuessNumberGame {
 
     private String output(String answer) {
         StringBuilder result = new StringBuilder();
-        if (this.getTimes() >= 6) {
+        if (this.getTimes() >= MAX_GAME_TIME) {
             result.append(ANSWER_IS).append(this.getAnswer()).append(GAME_OVER_YOU_LOSE);
         } else {
             result.append(answer).append(GAME_TIMES).append(this.getTimes());
