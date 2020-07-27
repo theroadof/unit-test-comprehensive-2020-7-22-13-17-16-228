@@ -3,7 +3,12 @@ package example;
 import java.util.*;
 
 public class GuessNumberGame {
-    public static final String SPACE_REGEX = " ";
+    private static final String SPACE_REGEX = " ";
+    private static final String YOU_WIN = ",you win!";
+    private static final String GAME_OVER_YOU_LOSE = "\ngame over!you lose!";
+    private static final String GAME_TIMES = "\ngame times : ";
+    private static final String ANSWER_IS = "answer is : ";
+    private static final String WRONG_INPUT = "Wrong Input，Input again";
     private final List<Integer> answer;
 
     private int times;
@@ -28,7 +33,7 @@ public class GuessNumberGame {
             List<Integer> playerInput = receiveInput(player);
             String answer = this.guessNumber(playerInput);
             if ("4A0B".equals(answer)) {
-                System.out.println(answer + ",you win!");
+                System.out.println(answer + YOU_WIN);
                 break;
             }
             System.out.println(output(answer));
@@ -38,16 +43,16 @@ public class GuessNumberGame {
     private String output(String answer) {
         StringBuilder result = new StringBuilder();
         if (this.getTimes() >= 6) {
-            result.append("answer is : ").append(this.getAnswer()).append("\ngame over!you lose!");
+            result.append(ANSWER_IS).append(this.getAnswer()).append(GAME_OVER_YOU_LOSE);
         } else {
-            result.append(answer).append("\ngame times : ").append(this.getTimes());
+            result.append(answer).append(GAME_TIMES).append(this.getTimes());
         }
         return result.toString();
     }
 
     public String guessNumber(List<Integer> playerAnswer) {
         times++;
-        return (isValid(playerAnswer)) ? compare(this.answer, playerAnswer) : "Wrong Input，Input again";
+        return (isValid(playerAnswer)) ? compare(this.answer, playerAnswer) : WRONG_INPUT;
     }
 
     private List<Integer> getAnswer() {
