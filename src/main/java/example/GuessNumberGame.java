@@ -61,21 +61,13 @@ public class GuessNumberGame {
     }
 
     private String compare(List<Integer> answer, List<Integer> playerAnswer) {
-        int rightNumberInRightPosition = 0, rightNumber = 0;
         Map<Integer, Integer> playerAnswerMap = new HashMap<>();
-        playerAnswer.forEach(playerInput -> {
-            playerAnswerMap.put(playerInput,playerAnswer.indexOf(playerInput));
-        });
-        for (int i = 0; i < answer.size(); i++) {
-            if (playerAnswerMap.containsKey(answer.get(i))) {
-                if (playerAnswerMap.get(answer.get(i)) == i) {
-                    rightNumberInRightPosition++;
-                } else {
-                    rightNumber++;
-                }
-            }
-        }
-        return String.format("%dA%dB", rightNumberInRightPosition, rightNumber);
+        playerAnswer.forEach(playerInput -> playerAnswerMap.put(playerInput, playerAnswer.indexOf(playerInput)));
+        int rightNumber = (int) answer.stream().filter(playerAnswerMap::containsKey).count();
+        int rightNumberInRightPosition = (int) answer.stream().filter(number->(
+                (playerAnswerMap.containsKey(number))&&(answer.indexOf(number) == playerAnswerMap.get(number))
+        )).count();
+        return String.format("%dA%dB", rightNumberInRightPosition, rightNumber-rightNumberInRightPosition);
     }
 
     private boolean isValid(List<Integer> playerAnswer) {
