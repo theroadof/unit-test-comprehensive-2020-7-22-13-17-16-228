@@ -3,6 +3,7 @@ package example;
 import java.util.*;
 
 public class GuessNumberGame {
+    public static final String SPACE_REGEX = " ";
     private final List<Integer> answer;
 
     private int times;
@@ -14,7 +15,7 @@ public class GuessNumberGame {
 
     private List<Integer> receiveInput(Scanner scanner) {
         List<Integer> playerInput = new ArrayList<>();
-        String[] input = scanner.nextLine().trim().split(" ");
+        String[] input = scanner.nextLine().trim().split(SPACE_REGEX);
         for (String s : input) {
             playerInput.add(Integer.parseInt(s));
         }
