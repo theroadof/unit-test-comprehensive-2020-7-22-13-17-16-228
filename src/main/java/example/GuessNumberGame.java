@@ -1,31 +1,22 @@
 package example;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class GuessNumberGame {
-    private List<Integer> answer;
-
-    private AnswerProvider answerProvider;
+    private final List<Integer> answer;
 
     private int times;
 
     public GuessNumberGame(AnswerProvider answerProvider) {
-        this.answerProvider = answerProvider;
         this.answer = answerProvider.generateAnswer();
         times = 0;
     }
 
-//    public static void main(String[] args) {
-//        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
-//        playGame(guessNumberGame);
-//    }
-
     public List<Integer> receiveInput(Scanner scanner) {
         List<Integer> playerInput = new ArrayList<>();
         String[] input = scanner.nextLine().trim().split(" ");
-        for (int j = 0; j < input.length; j++) {
-            playerInput.add(Integer.parseInt(input[j]));
+        for (String s : input) {
+            playerInput.add(Integer.parseInt(s));
         }
         return playerInput;
     }
@@ -35,7 +26,7 @@ public class GuessNumberGame {
         for (int i = 0; i < 6; i++) {
             List<Integer> playerInput = receiveInput(player);
             String answer = this.guessNumber(playerInput);
-            if (answer.equals("4A0B")) {
+            if ("4A0B".equals(answer)) {
                 System.out.println(answer + ",you win!");
                 break;
             }
@@ -46,9 +37,9 @@ public class GuessNumberGame {
     public String output(String answer) {
         StringBuilder result = new StringBuilder();
         if (this.getTimes() >= 6) {
-            result.append("answer is : " + this.getAnswer() + "\ngame over!you lose!");
+            result.append("answer is : ").append(this.getAnswer()).append("\ngame over!you lose!");
         } else {
-            result.append(answer + "\ngame times : " + this.getTimes());
+            result.append(answer).append("\ngame times : ").append(this.getTimes());
         }
         return result.toString();
     }
@@ -92,6 +83,7 @@ public class GuessNumberGame {
         for (int number : playerAnswer) {
             if (number > 9 || number < 0) {
                 result = false;
+                break;
             }
         }
         return result;

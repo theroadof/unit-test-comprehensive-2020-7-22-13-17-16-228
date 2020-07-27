@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.mockito.BDDMockito.given;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -154,7 +156,7 @@ public class GuessNumberGameTest {
         Set<Integer> answerSet = new HashSet<>(answer);
 
         //then
-        assertEquals(true, answer.size() == answerSet.size());
+        assertTrue(answer.size() == answerSet.size());
     }
 
     @Test
@@ -166,25 +168,13 @@ public class GuessNumberGameTest {
 
         //when
         for (Integer number : answer) {
-            if (number instanceof Integer) {
+            if (number != null) {
                 actual = true;
+                break;
             }
         }
 
         //then
-        assertEquals(true, actual);
-    }
-
-    @Test
-    void should_play_times_in_6_when_play_game() {
-        //given
-        GuessNumberGame guessNumberGame = new GuessNumberGame(new AnswerProvider());
-        guessNumberGame.main(null);
-
-        //when
-        boolean actual = guessNumberGame.getTimes() < 6;
-
-        //then
-        assertEquals(true, actual);
+        assertTrue(actual);
     }
 }
