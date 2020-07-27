@@ -1,6 +1,9 @@
 package example;
 
+import javafx.util.Pair;
+
 import java.util.*;
+import java.util.stream.Collectors;
 
 public class GuessNumberGame {
     private static final String SPACE_REGEX = " ";
@@ -19,12 +22,8 @@ public class GuessNumberGame {
     }
 
     private List<Integer> receiveInput(Scanner scanner) {
-        List<Integer> playerInput = new ArrayList<>();
         List<String> numbers = Arrays.asList(scanner.nextLine().trim().split(SPACE_REGEX));
-        for (String s : numbers) {
-            playerInput.add(Integer.parseInt(s));
-        }
-        return playerInput;
+        return numbers.stream().map(Integer::valueOf).collect(Collectors.toList());
     }
 
     void playGame() {
