@@ -75,15 +75,4 @@ class LibraryTest {
         });
         Assertions.assertEquals("a message", exception.getMessage());
     }
-
-    @Test
-    @Disabled
-    void timeoutExceeded() {
-        // The following assertion fails with an error message similar to:
-        // execution exceeded timeout of 10 ms by 91 ms
-        assertTimeout(ofMillis(10), () -> {
-            // Simulate task that takes more than 10 ms.
-            Thread.sleep(100);
-        });
-    }
 }
