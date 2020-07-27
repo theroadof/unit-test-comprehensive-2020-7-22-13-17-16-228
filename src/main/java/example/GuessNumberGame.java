@@ -13,6 +13,7 @@ public class GuessNumberGame {
     private static final String ANSWER_IS = "answer is : ";
     private static final String WRONG_INPUT = "Wrong Input，Input again";
     private static final int MAX_GAME_TIME = 6;
+    private static final String WIN_CONDITION = "4A0B";
     private final List<Integer> answer;
 
     private int times;
@@ -29,10 +30,10 @@ public class GuessNumberGame {
 
     void playGame() {
         Scanner player = new Scanner(System.in);
-        for (int i = 0; i < 6; i++) {
+        for (int i = 0; i < MAX_GAME_TIME; i++) {
             List<Integer> playerInput = receiveInput(player);
             String answer = this.guessNumber(playerInput);
-            if ("4A0B".equals(answer)) {
+            if (WIN_CONDITION.equals(answer)) {
                 System.out.println(answer + YOU_WIN);
                 break;
             }
