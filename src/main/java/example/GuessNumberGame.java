@@ -12,7 +12,7 @@ public class GuessNumberGame {
         times = 0;
     }
 
-    public List<Integer> receiveInput(Scanner scanner) {
+    private List<Integer> receiveInput(Scanner scanner) {
         List<Integer> playerInput = new ArrayList<>();
         String[] input = scanner.nextLine().trim().split(" ");
         for (String s : input) {
@@ -21,7 +21,7 @@ public class GuessNumberGame {
         return playerInput;
     }
 
-    public void playGame() {
+    void playGame() {
         Scanner player = new Scanner(System.in);
         for (int i = 0; i < 6; i++) {
             List<Integer> playerInput = receiveInput(player);
@@ -34,7 +34,7 @@ public class GuessNumberGame {
         }
     }
 
-    public String output(String answer) {
+    private String output(String answer) {
         StringBuilder result = new StringBuilder();
         if (this.getTimes() >= 6) {
             result.append("answer is : ").append(this.getAnswer()).append("\ngame over!you lose!");
@@ -49,11 +49,11 @@ public class GuessNumberGame {
         return (isValid(playerAnswer)) ? compare(this.answer, playerAnswer) : "Wrong Input，Input again";
     }
 
-    public List<Integer> getAnswer() {
+    private List<Integer> getAnswer() {
         return answer;
     }
 
-    public String compare(List<Integer> answer, List<Integer> playerAnswer) {
+    private String compare(List<Integer> answer, List<Integer> playerAnswer) {
         int rightNumberInRightPosition = 0, rightNumber = 0;
         Map<Integer, Integer> playerAnswerMap = new HashMap<>();
         for (int i = 0; i < answer.size(); i++) {
@@ -71,7 +71,7 @@ public class GuessNumberGame {
         return String.format("%dA%dB", rightNumberInRightPosition, rightNumber);
     }
 
-    public boolean isValid(List<Integer> playerAnswer) {
+    private boolean isValid(List<Integer> playerAnswer) {
         boolean result = true;
         if (playerAnswer.isEmpty()) {
             result = false;
@@ -89,7 +89,7 @@ public class GuessNumberGame {
         return result;
     }
 
-    public int getTimes() {
+    private int getTimes() {
         return times;
     }
 }
