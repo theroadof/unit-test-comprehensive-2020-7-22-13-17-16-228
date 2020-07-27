@@ -62,10 +62,10 @@ public class GuessNumberGame {
         Map<Integer, Integer> playerAnswerMap = new HashMap<>();
         playerAnswer.forEach(playerInput -> playerAnswerMap.put(playerInput, playerAnswer.indexOf(playerInput)));
         int rightNumber = (int) answer.stream().filter(playerAnswerMap::containsKey).count();
-        int rightNumberInRightPosition = (int) answer.stream().filter(number->(
-                (playerAnswerMap.containsKey(number))&&(answer.indexOf(number) == playerAnswerMap.get(number))
+        int rightNumberInRightPosition = (int) answer.stream().filter(number -> (
+                (playerAnswerMap.containsKey(number)) && (answer.indexOf(number) == playerAnswerMap.get(number))
         )).count();
-        return String.format("%dA%dB", rightNumberInRightPosition, rightNumber-rightNumberInRightPosition);
+        return String.format("%dA%dB", rightNumberInRightPosition, rightNumber - rightNumberInRightPosition);
     }
 
     private boolean isValid(List<Integer> playerAnswer) {
