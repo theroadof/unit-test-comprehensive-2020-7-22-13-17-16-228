@@ -20,8 +20,8 @@ public class GuessNumberGame {
 
     private List<Integer> receiveInput(Scanner scanner) {
         List<Integer> playerInput = new ArrayList<>();
-        String[] input = scanner.nextLine().trim().split(SPACE_REGEX);
-        for (String s : input) {
+        List<String> numbers = Arrays.asList(scanner.nextLine().trim().split(SPACE_REGEX));
+        for (String s : numbers) {
             playerInput.add(Integer.parseInt(s));
         }
         return playerInput;
