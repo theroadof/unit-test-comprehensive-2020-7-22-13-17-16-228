@@ -9,7 +9,7 @@ import java.util.Set;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class AnswerProviderTest {
+class AnswerProviderTest {
     @Test
     void should_generate_size_4_answer_when_play_generate_answer() {
 
